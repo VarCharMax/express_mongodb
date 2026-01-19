@@ -1,9 +1,14 @@
 import express, { json, urlencoded } from 'express';
 
-import BlogPost from './models/BlogPost.js';
+import fileUpload from 'express-fileupload';
 import { connect } from 'mongoose';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import BlogPost from './models/BlogPost.js';
 
 const app = new express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 connect('mongodb://localhost:27017/my_database');
 
@@ -11,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(fileUpload());
 
 app.listen(4000, () => {
   console.log('App listening on port 4000');
@@ -43,11 +49,14 @@ app.get('/posts/new', (req, res) => {
 });
 
 app.post('/posts/store', async (req, res) => {
-  await BlogPost.create(req.body)
-    .then((blogpost) => {
-      res.redirect('/');
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  let image = req.files.image;
+  image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
+    await BlogPost.create(req.body)
+      .then((blogpost) => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
 });
