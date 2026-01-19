@@ -1,10 +1,10 @@
 import express, { json, urlencoded } from 'express';
 
-import fileUpload from 'express-fileupload';
-import { connect } from 'mongoose';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import BlogPost from './models/BlogPost.js';
+import { connect } from 'mongoose';
+import { fileURLToPath } from 'url';
+import fileUpload from 'express-fileupload';
+import path from 'path';
 
 const app = new express();
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +26,6 @@ app.get('/', async (req, res) => {
   const blogposts = await BlogPost.find({
     // title: /science/,
   });
-  console.log(blogposts);
   res.render('index', { blogposts });
 });
 
@@ -51,7 +50,7 @@ app.get('/posts/new', (req, res) => {
 app.post('/posts/store', async (req, res) => {
   let image = req.files.image;
   image.mv(path.resolve(__dirname, 'public/img', image.name), async (error) => {
-    await BlogPost.create(req.body)
+    await BlogPost.create({ ...req.body, image: '/img/' + image.name })
       .then((blogpost) => {
         res.redirect('/');
       })

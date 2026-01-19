@@ -9,6 +9,7 @@ const BlogPostSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  image: String,
 });
 
 const BlogPost = model('BlogPost', BlogPostSchema);
