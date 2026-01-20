@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from 'express';
 
+import flash from 'connect-flash';
 import fileUpload from 'express-fileupload';
 import expressSession from 'express-session';
 import mongoose from 'mongoose';
@@ -32,6 +33,7 @@ app.use(
     secret: 'keyboard cat',
   })
 );
+app.use(flash());
 app.use('/posts/store', validateMiddleWare);
 app.all('/{*splat}', (req, res, next) => {
   loggedIn = req.session.userId;

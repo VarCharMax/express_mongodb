@@ -9,8 +9,8 @@ const storeUserController = async (req, res) => {
       const validationErrors = Object.keys(error.errors).map(
         (key) => error.errors[key].message
       );
-      req.session.validationErrors = validationErrors;
-      // console.log(`Error: ${error}`);
+      req.flash('validationErrors', validationErrors);
+      // req.session.validationErrors = validationErrors;
       res.redirect('/auth/register');
     });
 };
