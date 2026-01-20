@@ -6,7 +6,8 @@ const storeUserController = async (req, res) => {
       res.redirect('/');
     })
     .catch((error) => {
-      console.log(error);
+      console.log(`Error: ${error}`);
+      res.redirect('/auth/register');
     });
 };
 
