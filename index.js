@@ -48,6 +48,9 @@ app.get('/posts/new', authMiddleware, newPostController);
 app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController);
 app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController);
 app.get('/auth/logout', authMiddleware, logoutController);
+app.use((req, res) => {
+  res.status(404).render('notfound');
+});
 app.post('/posts/store', authMiddleware, storePostController);
 app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController);
 app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController);
