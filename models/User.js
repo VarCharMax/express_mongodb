@@ -12,6 +12,7 @@ UserSchema.pre('save', async function () {
   // let user = this;
   console.log(this.password);
   //This is to avoid an issue where the hashed password wasn't getting saved.
+  //By wrapping in an IIFE, we can use await with the bcrypt.hash function.
   this.password = await (async () => {
     return bcrypt.hash(this.password, 10);
   })();
