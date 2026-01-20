@@ -40,6 +40,15 @@
                     class="form-control"
                     id="body"
                     name="body"></textarea>
+                  <script>
+                    $(document).ready(function () {
+                      $('#body').summernote({
+                        placeholder: 'Write your post content here...',
+                        tabsize: 2,
+                        height: 200,
+                      });
+                    });
+                  </script>
                 </div>
               </div>
               <div class="control-group">
