@@ -10,7 +10,7 @@ const storeUserController = async (req, res) => {
         (key) => error.errors[key].message
       );
       req.flash('validationErrors', validationErrors);
-      // req.session.validationErrors = validationErrors;
+      req.flash('data', req.body);
       res.redirect('/auth/register');
     });
 };
