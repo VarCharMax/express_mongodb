@@ -11,6 +11,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save', async function () {
   // let user = this;
   console.log(this.password);
+  //This is to avoid an issue where the hashed password wasn't getting saved.
   this.password = await (async () => {
     return bcrypt.hash(this.password, 10);
   })();
