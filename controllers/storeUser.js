@@ -6,7 +6,11 @@ const storeUserController = async (req, res) => {
       res.redirect('/');
     })
     .catch((error) => {
-      console.log(`Error: ${error}`);
+      const validationErrors = Object.keys(error.errors).map(
+        (key) => error.errors[key].message
+      );
+      req.session.validationErrors = validationErrors;
+      // console.log(`Error: ${error}`);
       res.redirect('/auth/register');
     });
 };

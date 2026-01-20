@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import { mongoose } from 'mongoose';
+import mongooseUniqueValidator from 'mongoose-unique-validator';
 
 const Schema = mongoose.Schema;
 
@@ -7,6 +8,7 @@ const UserSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
 });
+UserSchema.plugin(mongooseUniqueValidator);
 
 UserSchema.pre('save', async function () {
   //This is to avoid an issue where the hashed password wasn't getting saved.
