@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from 'express';
 
+import expressSession from 'express-session';
 import fileUpload from 'express-fileupload';
 import getPostController from './controllers/getPost.js';
 import homeController from './controllers/home.js';
@@ -26,6 +27,11 @@ app.use(express.static('public'));
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(fileUpload());
+app.use(
+  expressSession({
+    secret: 'keyboard cat',
+  })
+);
 app.use('/posts/store', validateMiddleWare);
 
 app.listen(4000, () => {
