@@ -5,6 +5,7 @@ import getPostController from './controllers/getPost.js';
 import homeController from './controllers/home.js';
 import mongoose from 'mongoose';
 import newPostController from './controllers/newpost.js';
+import newUserController from './controllers/newUser.js';
 import storePostController from './controllers/storePost.js';
 import validateMiddleWare from './middleware/validationMiddleware.js';
 
@@ -32,4 +33,5 @@ app.listen(4000, () => {
 app.get('/', homeController);
 app.get('/post/:id', getPostController);
 app.get('/posts/new', newPostController);
+app.get('/auth/register', newUserController);
 app.post('/posts/store', storePostController);
