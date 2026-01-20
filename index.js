@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import newPostController from './controllers/newpost.js';
 import newUserController from './controllers/newUser.js';
 import storePostController from './controllers/storePost.js';
+import storeUserController from './controllers/storeUser.js';
 import validateMiddleWare from './middleware/validationMiddleware.js';
 
 mongoose.connect('mongodb://localhost:27017/my_database');
@@ -23,7 +24,6 @@ app.use(express.static('public'));
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(fileUpload());
-// app.use(customMiddleWare);
 app.use('/posts/store', validateMiddleWare);
 
 app.listen(4000, () => {
@@ -35,3 +35,4 @@ app.get('/post/:id', getPostController);
 app.get('/posts/new', newPostController);
 app.get('/auth/register', newUserController);
 app.post('/posts/store', storePostController);
+app.post('/auth/register', storeUserController);
