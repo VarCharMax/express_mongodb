@@ -35,4 +35,4 @@ app.get('/post/:id', getPostController);
 app.get('/posts/new', newPostController);
 app.get('/auth/register', newUserController);
 app.post('/posts/store', storePostController);
-app.post('/auth/register', storeUserController);
+app.post('/users/register', storeUserController);
