@@ -1,20 +1,20 @@
 import express, { json, urlencoded } from 'express';
 
-import flash from 'connect-flash';
-import fileUpload from 'express-fileupload';
+import authMiddleware from './middleware/authMiddleware.js';
 import expressSession from 'express-session';
-import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
+import flash from 'connect-flash';
 import getPostController from './controllers/getPost.js';
 import homeController from './controllers/home.js';
 import loginController from './controllers/login.js';
 import loginUserController from './controllers/loginUser.js';
 import logoutController from './controllers/logout.js';
-import newPostController from './controllers/newpost.js';
+import mongoose from 'mongoose';
+import newPostController from './controllers/newPost.js';
 import newUserController from './controllers/newUser.js';
+import redirectIfAuthenticatedMiddleware from './middleware/redirectIfAuthenticatedMiddleware.js';
 import storePostController from './controllers/storePost.js';
 import storeUserController from './controllers/storeUser.js';
-import authMiddleware from './middleware/authMiddleware.js';
-import redirectIfAuthenticatedMiddleware from './middleware/redirectIfAuthenticatedMiddleware.js';
 import validateMiddleWare from './middleware/validationMiddleware.js';
 
 // mongoose.connect('mongodb://localhost:27017/my_database');
