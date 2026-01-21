@@ -17,7 +17,10 @@ import authMiddleware from './middleware/authMiddleware.js';
 import redirectIfAuthenticatedMiddleware from './middleware/redirectIfAuthenticatedMiddleware.js';
 import validateMiddleWare from './middleware/validationMiddleware.js';
 
-mongoose.connect('mongodb://localhost:27017/my_database');
+// mongoose.connect('mongodb://localhost:27017/my_database');
+mongoose.connect(
+  'mongodb+srv://rparkes_db_user:LTeoZMwiCBGnedyj>@cluster0.sr3rl47.mongodb.net/blog'
+);
 
 const app = new express();
 
