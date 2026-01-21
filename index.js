@@ -19,7 +19,7 @@ import validateMiddleWare from './middleware/validationMiddleware.js';
 
 // mongoose.connect('mongodb://localhost:27017/my_database');
 mongoose.connect(
-  'mongodb+srv://rparkes_db_user:LTeoZMwiCBGnedyj@cluster0.sr3rl47.mongodb.net/?appName=blog'
+  'mongodb+srv://<user>:<pwd>@cluster0.sr3rl47.mongodb.net/node_database?retryWrites=true&w=majority'
 );
 
 const app = new express();
