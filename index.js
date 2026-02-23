@@ -19,7 +19,7 @@ import validateMiddleWare from './middleware/validationMiddleware.js';
 
 // mongoose.connect('mongodb://localhost:27017/my_database');
 mongoose.connect(
-  'mongodb+srv://<user>:<pwd>@cluster0.sr3rl47.mongodb.net/node_database?retryWrites=true&w=majority'
+  'mongodb+srv://rparkes_db_user:LTeoZMwiCBGnedyj@cluster0.sr3rl47.mongodb.net/node_database?retryWrites=true&w=majority&appName=Cluster0'
 );
 
 const app = new express();
@@ -33,7 +33,7 @@ app.use(urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(
   expressSession({
-    secret: 'keyboard cat',
+    secret: 'keyboard cat'
   })
 );
 app.use(flash());
